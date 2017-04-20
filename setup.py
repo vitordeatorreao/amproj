@@ -5,12 +5,14 @@ authors = ['Vitor Torreao <vat@cin.ufpe.br>',
            'Avyner Lucena <ahbfl@cin.ufpe.br>',
            'Jorge Linhares <jhcl@cin.ufpe.br>']
 
+
 def readme():
     try:
         with open('README.rst') as f:
             return f.read()
     except(IOError):
-    	return description
+        return description
+
 
 setup(name='amproj',
       version='0.1',
