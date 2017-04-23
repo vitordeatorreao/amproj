@@ -23,4 +23,6 @@ setup(name='amproj',
       author_email='',
       license='GPL-2.0',
       packages=['amproj'],
+      test_suite='nose.collector',
+      tests_require=['nose'],
       zip_safe=False)
