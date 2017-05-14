@@ -23,6 +23,9 @@ setup(name='amproj',
       author_email='',
       license='GPL-2.0',
       packages=['amproj'],
+      install_requires=[
+          'numpy',
+      ],
       entry_points={
           'console_scripts': ['amproj_cmd=amproj.proj_command_line:main'],
       },
