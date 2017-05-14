@@ -11,6 +11,7 @@ class TestBase(unittest.TestCase):
         ds = read_from_data_file_with_headers(filepath)
         self.assertEqual(20, len(ds.features))
         self.assertEqual(5, len(ds.data))
+        self.assertEqual(5, len(ds))
 
         # test a couple of datapoints
         self.assertEqual("GRASS", ds.data[0]["CLASS"])

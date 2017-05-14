@@ -29,3 +29,9 @@ class TestMetrics(unittest.TestCase):
             self.assertEqual(0.0, euclidean(ya, ya))
         except ImportError:
             pass
+        x0 = [0,0,0,0]
+        yn = [-3,-4,-5,-6]
+        d = euclidean(x0, yn)
+        self.assertTrue(d > 9.273)
+        self.assertTrue(d < 9.274)
+        self.assertEqual(d, euclidean(x0, y))

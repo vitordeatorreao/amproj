@@ -51,6 +51,20 @@ class Dataset:
             i += 1
         self.data.append(point)  # actually adds the datapoint to the set
 
+    def __len__(self):
+        """Returns the length of this dataset"""
+        return len(self.data)
+
+    def __iter__(self):
+        """Iterates through the objects in this dataset"""
+        return iter(self.data)
+
+    def __getitem__(self, key):
+        """Gets the dataset at the specified index"""
+        if type(key) != int:
+            raise TypeError("The index must be an integer, instead got " + key)
+        return self.data[key]
+
     def __tryparse__(self, value):
         """Parses the value into int, float or string
 
