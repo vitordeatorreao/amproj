@@ -21,7 +21,7 @@ def get_dist_matrix(ds, view, metric):
         The distance matrix. Where dist[i][j] is the distance between the
         objects i and j
     """
-    dist = [] * len(ds)  # the distance matrix
+    dist = []  # the distance matrix
     for i in range(len(ds)):
         row = [0.0] * len(ds)
         dist.append(row)

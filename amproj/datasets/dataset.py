@@ -44,7 +44,8 @@ class Dataset:
             raise TypeError("The datapoint must be of the same size as " +
                             "the features list. The features list has size " +
                             str(len(self.features)) + " and the datapoint " +
-                            "has size " + str(len(datapoint)) + ".")
+                            "has size " + str(len(datapoint)) + ". The " +
+                            "datapoint is " + str(datapoint))
         i = 0
         for feature_name in self.features:
             point[feature_name] = self.__tryparse__(datapoint[i])
