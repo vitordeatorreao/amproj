@@ -1,10 +1,13 @@
 """Contains implementations for k-medoids algorithm"""
 
+import datetime
 import random
 try:
     import numpy as np
 except ImportError:
     pass
+
+from operator import mul
 
 
 class FuzzyKMedoids:
@@ -302,6 +305,11 @@ class FuzzyKMedoids:
         new_G = []  # K lines and q columns
         for k in range(K):
             G_star = []  # q elements
+            uk = [0.0] * n
+            if s != 1.0:
+                lambsk = list(map(lambs[k], lambda x: x ** s))
+            else:
+                lambsk = lambs[k]
             while len(G_star) < q:
                 min_e = None
                 min_e_val = float("inf")  # infinity in Python 2.x
@@ -310,11 +318,12 @@ class FuzzyKMedoids:
                         continue
                     sum_n = 0.0
                     for i in range(n):
-                        uik = u[i][k] ** m
+                        if uk[i] <= 0.0:
+                            uk[i] = u[i][k] ** m
                         sum_p = 0.0
                         for j in range(p):
-                            sum_p += (lambs[k][j] ** s) * views[j][i][e_h]
-                        sum_n += uik * sum_p
+                            sum_p += lambsk[j] * views[j][i][e_h]
+                        sum_n += uk[i] * sum_p
                     if sum_n < min_e_val:
                         min_e = e_h
                         min_e_val = sum_n
@@ -371,26 +380,18 @@ class FuzzyKMedoids:
         new_lambs = []  # should have K lines and p columns
         for k in range(K):
             new_lambs.append([0.0] * p)
-            for j in range(p):
-                sum_i = 0.0
+            sums = [0.0] * p
+            for h in range(p):
                 for i in range(n):
                     uik = u[i][k] ** m
                     sum_e = 0.0
                     for e in G[k]:
-                        sum_e += views[j][i][e]
-                    sum_i += uik * sum_e
-                denominator = sum_i
-                numerator = 1.0
-                for h in range(p):
-                    sum_i = 0.0
-                    for i in range(n):
-                        uik = u[i][k] ** m
-                        sum_e = 0.0
-                        for e in G[k]:
-                            sum_e += views[h][i][e]
-                        sum_i += uik * sum_e
-                    numerator *= sum_i
-                numerator = numerator ** (1/float(p))
+                        sum_e += views[h][i][e]
+                    sums[h] += uik * sum_e
+            oneoverp = 1/float(p)
+            for j in range(p):
+                denominator = sums[j]
+                numerator = reduce(mul, sums, 1) ** oneoverp  # product of sums
                 new_lambs[k][j] = numerator/denominator
         return new_lambs
 
@@ -451,11 +452,23 @@ class FuzzyKMedoids:
         while t < T and delta > self.epsilon:
             t += 1
             # with u and lambs fixed, find the best prototypes
+            start = datetime.datetime.now()
             G = self.__update_prototypes__(views, K, m, s, q, p, n, u, lambs)
+            end = datetime.datetime.now()
+            print("Update prototypes in " + str(end - start))
+            start = datetime.datetime.now()
             lambs = self.__update_lambs__(views, K, m, s, q, p, n, u, G)
+            end = datetime.datetime.now()
+            print("Update lambdas in " + str(end - start))
             delta = J
+            start = datetime.datetime.now()
             u = self.__membership_degress__(views, K, m, s, q, p, n, lambs, G)
+            end = datetime.datetime.now()
+            print("Update membership degrees in " + str(end - start))
+            start = datetime.datetime.now()
             J = self.__cost_function__(views, K, m, s, q, p, n, u, lambs, G)
+            end = datetime.datetime.now()
+            print("Update cost function in " + str(end - start))
             # for debug
             if "updated" in kwargs:
                 kwargs["updated"](delta, J)

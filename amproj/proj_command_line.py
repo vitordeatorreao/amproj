@@ -1,4 +1,5 @@
 import argparse
+import datetime
 
 from amproj.datasets import read_from_data_file_with_headers
 from amproj.distance import FuzzyKMedoids, get_dist_matrix, euclidean
@@ -6,7 +7,7 @@ from amproj.evaluation import rand_index, adjusted_rand_index
 
 
 def check_Js(j1, j2):
-    print("Before = " + str(j1) + ";\tafter = " + str(j2))
+    print("Before = " + str(j1) + ";\tafter = " + str(j2) + " at " + str(datetime.datetime.now()))
 
 
 def main():
@@ -64,14 +65,16 @@ def main():
     best_G = None
     best_u = None
     best_value = float("inf")  # infinity
+    print("Started at " + str(datetime.datetime.now()))
     for i in range(100):
         fuzzyk = FuzzyKMedoids(7, 1.6, 1.0, 1000000, 0.000001, 3)
-        lambs, G, u, J = fuzzyk.fit(shapeview, rgbview)
+        lambs, G, u, J = fuzzyk.fit(shapeview, rgbview, updated=check_Js)
         if best_value > J:
             best_lambs = lambs
             best_G = G
             best_u = u
             best_value = J
+        print("Iteration " + str(i) + "/100 at " + str(datetime.datetime.now()))
     print("Best adequacy criterion = " + str(best_value))
     for k in range(len(best_G)):
         print("Representantes grupo " + str(k) + " = [" +
