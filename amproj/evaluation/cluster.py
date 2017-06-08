@@ -3,6 +3,7 @@ Provides functions for calculating clustering metrics, such as the Rand Index
 """
 
 import math
+from decimal import Decimal
 
 
 def rand_index(pt1, pt2):
@@ -19,7 +20,7 @@ def rand_index(pt1, pt2):
 
     Returns
     -------
-    rand : float
+    rand : Decimal
         The rand index comparing the two given partitions.
     """
     a = 0
@@ -40,22 +41,22 @@ def rand_index(pt1, pt2):
                 c += 1
             elif pt1[e1] != pt1[e2] and pt2[e1] == pt2[e2]:
                 d += 1
-    return float(a + b)/float(a + b + c + d)
+    return Decimal(a + b)/Decimal(a + b + c + d)
 
 
 def binomial(a, b):
     """Calculates the binomial given the two parameters"""
     if a == b:
-        return 1.0
+        return Decimal(1.0)
     elif b == 1.0:
         return a
     elif b > a:
-        return 0.0
+        return Decimal(0.0)
     else:
         x = math.factorial(a)
         y = math.factorial(b)
         z = math.factorial(a - b)
-        return float(x) / float(y * z)
+        return Decimal(x) / Decimal(y * z)
 
 
 def adjusted_rand_index(pt1, pt2, l):
@@ -74,7 +75,7 @@ def adjusted_rand_index(pt1, pt2, l):
 
     Returns
     -------
-    rand : float
+    rand : Decimal
         The adjusted rand index comparing the two given partitions.
     """
     r = len(pt1)
@@ -96,6 +97,6 @@ def adjusted_rand_index(pt1, pt2, l):
     sum_comb = sum([binomial(n[i][j], 2) for i in range(r) for j in range(s)])
     sum_comb_a = sum([binomial(a[i], 2) for i in range(r)])
     sum_comb_b = sum([binomial(b[j], 2) for j in range(s)])
-    prod_comb = float(sum_comb_a * sum_comb_b) / float(binomial(l, 2))
-    mean_comb = float(sum_comb_a + sum_comb_b) / 2
-    return float(sum_comb - prod_comb) / float(mean_comb - prod_comb)
+    prod_comb = Decimal(sum_comb_a * sum_comb_b) / binomial(l, 2)
+    mean_comb = Decimal(sum_comb_a + sum_comb_b) / 2
+    return Decimal(sum_comb - prod_comb) / Decimal(mean_comb - prod_comb)

@@ -1,5 +1,7 @@
 import argparse
 import datetime
+import sys
+import traceback
 
 from amproj.datasets import read_from_data_file_with_headers
 from amproj.distance import FuzzyKMedoids, get_dist_matrix, euclidean
@@ -67,14 +69,20 @@ def main():
     best_value = float("inf")  # infinity
     print("Started at " + str(datetime.datetime.now()))
     for i in range(100):
-        fuzzyk = FuzzyKMedoids(7, 1.6, 1.0, 300, 0.0000000001, 3)
-        lambs, G, u, J = fuzzyk.fit(shapeview, rgbview, updated=check_Js)
-        if best_value > J:
-            best_lambs = lambs
-            best_G = G
-            best_u = u
-            best_value = J
-        print("Iteration " + str(i) + "/100 at " + str(datetime.datetime.now()))
+        try:
+            fuzzyk = FuzzyKMedoids(7, 1.6, 1.0, 300, 0.0000000001, 3)
+            lambs, G, u, J = fuzzyk.fit(shapeview, rgbview, updated=check_Js)
+            if best_value > J:
+                best_lambs = lambs
+                best_G = G
+                best_u = u
+                best_value = J
+            print("Iteration " + str(i+1) + "/100 at " + str(datetime.datetime.now()))
+        except (KeyboardInterrupt, SystemExit, Exception):
+            print("Interrupted!")
+            ex_type, ex, tb = sys.exc_info()
+            print("".join(traceback.format_exception(ex_type, ex, tb)))
+            break
     print("Best adequacy criterion = " + str(best_value))
     for k in range(len(best_G)):
         print("Representantes grupo " + str(k) + " = [" +
