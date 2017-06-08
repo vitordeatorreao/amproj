@@ -67,7 +67,7 @@ def main():
     best_value = float("inf")  # infinity
     print("Started at " + str(datetime.datetime.now()))
     for i in range(100):
-        fuzzyk = FuzzyKMedoids(7, 1.6, 1.0, 1000000, 0.000001, 3)
+        fuzzyk = FuzzyKMedoids(7, 1.6, 1.0, 300, 0.0000000001, 3)
         lambs, G, u, J = fuzzyk.fit(shapeview, rgbview, updated=check_Js)
         if best_value > J:
             best_lambs = lambs
