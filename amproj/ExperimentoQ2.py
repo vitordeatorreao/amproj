@@ -6,7 +6,7 @@ import math
 from sklearn.naive_bayes import GaussianNB
 
 
-arq = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/segmentationTest.txt','r')
+arq = open('segmentationTest.txt','r')
 
 dataset = []
 
@@ -17,8 +17,9 @@ arq.close()
 
 x,y= util.slice(dataset)
 
+viewShapeKnnResult30F,viewRGBKnnResult30F,viewShapeBayesResult30F,viewRGbBayesResult30F,VMJTResult30F = [],[],[],[],[]
 
-for i in range(0,1):
+for i in range(30):
 	train1,trainY1,test1,testY1,train2,trainY2,test2,testY2,train3,trainY3,test3,testY3,train4,trainY4,test4,testY4,train5,trainY5,test5,testY5,train6,trainY6,test6,testY6,train7,trainY7,test7,testY7,train8,trainY8,test8,testY8,train9,trainY9,test9,testY9,train10,trainY10,test10,testY10 = util.kfoldExtratification(x,y)
 	viewShapeKnnResult,viewRGBKnnResult,viewShapeBayesResult,viewRGbBayesResult,VMJTResult = [],[],[],[],[]
 
@@ -34,7 +35,7 @@ for i in range(0,1):
 	KNN1v1Error = util.errorRate(KNN1v1result,testY1)
 	viewShapeKnnResult.append(KNN1v1Error)
 
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/KNN1.txt','a')
+	file = open('KNN1.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -50,7 +51,7 @@ for i in range(0,1):
 	KNN1v2Error = util.errorRate(KNN1v2result,testY1)
 	viewRGBKnnResult.append(KNN1v2Error)
 	
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/KNN2.txt','a')
+	file = open('KNN2.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -67,7 +68,7 @@ for i in range(0,1):
 	Bayes1v1Error = util.errorRate(Bayes1v1result,testY1)
 	viewShapeBayesResult.append(Bayes1v1Error)
 
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/BAYES1.txt','a')
+	file = open('BAYES1.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -81,7 +82,7 @@ for i in range(0,1):
 	Bayes1v2Error = util.errorRate(Bayes1v2result,testY1)
 	viewRGbBayesResult.append(Bayes1v2Error)
 
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/BAYES2.txt','a')
+	file = open('BAYES2.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -97,7 +98,7 @@ for i in range(0,1):
 	VMJT1Error= util.errorRate(VMJT1Result,testY1)
 	VMJTResult.append(VMJT1Error)
 
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/VTMJ.txt','a')
+	file = open('VTMJ.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -144,7 +145,7 @@ for i in range(0,1):
 	VMJTResult.append(VMJT2Error)
 
 	#KNN
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/KNN1.txt','a')
+	file = open('KNN1.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -154,7 +155,7 @@ for i in range(0,1):
 	    file.write(str(k) + '\n') 
 	file.close()
 
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/KNN2.txt','a')
+	file = open('KNN2.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -165,7 +166,7 @@ for i in range(0,1):
 	file.close()
 	
 	#BAYES
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/BAYES1.txt','a')
+	file = open('BAYES1.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -175,7 +176,7 @@ for i in range(0,1):
 	    file.write(str(b) + '\n') 
 	file.close()
 	
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/BAYES2.txt','a')
+	file = open('BAYES2.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -186,7 +187,7 @@ for i in range(0,1):
 	file.close()
 
 	#VTMJ
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/VTMJ.txt','a')
+	file = open('VTMJ.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -233,7 +234,7 @@ for i in range(0,1):
 	VMJTResult.append(VMJT3Error)
 
 	#KNN
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/KNN1.txt','a')
+	file = open('KNN1.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -243,7 +244,7 @@ for i in range(0,1):
 	    file.write(str(k) + '\n') 
 	file.close()
 
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/KNN2.txt','a')
+	file = open('KNN2.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -254,7 +255,7 @@ for i in range(0,1):
 	file.close()
 	
 	#BAYES
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/BAYES1.txt','a')
+	file = open('BAYES1.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -264,7 +265,7 @@ for i in range(0,1):
 	    file.write(str(b) + '\n') 
 	file.close()
 	
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/BAYES2.txt','a')
+	file = open('BAYES2.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -275,7 +276,7 @@ for i in range(0,1):
 	file.close()
 
 	#VTMJ
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/VTMJ.txt','a')
+	file = open('VTMJ.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -324,7 +325,7 @@ for i in range(0,1):
 	VMJTResult.append(VMJT4Error)
 
 	#KNN
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/KNN1.txt','a')
+	file = open('KNN1.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -334,7 +335,7 @@ for i in range(0,1):
 	    file.write(str(k) + '\n') 
 	file.close()
 
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/KNN2.txt','a')
+	file = open('KNN2.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -345,7 +346,7 @@ for i in range(0,1):
 	file.close()
 	
 	#BAYES
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/BAYES1.txt','a')
+	file = open('BAYES1.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -355,7 +356,7 @@ for i in range(0,1):
 	    file.write(str(b) + '\n') 
 	file.close()
 	
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/BAYES2.txt','a')
+	file = open('BAYES2.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -366,7 +367,7 @@ for i in range(0,1):
 	file.close()
 
 	#VTMJ
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/VTMJ.txt','a')
+	file = open('VTMJ.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -415,7 +416,7 @@ for i in range(0,1):
 	VMJTResult.append(VMJT5Error)
 
 	#KNN
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/KNN1.txt','a')
+	file = open('KNN1.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -425,7 +426,7 @@ for i in range(0,1):
 	    file.write(str(k) + '\n') 
 	file.close()
 
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/KNN2.txt','a')
+	file = open('KNN2.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -436,7 +437,7 @@ for i in range(0,1):
 	file.close()
 	
 	#BAYES
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/BAYES1.txt','a')
+	file = open('BAYES1.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -446,7 +447,7 @@ for i in range(0,1):
 	    file.write(str(b) + '\n') 
 	file.close()
 	
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/BAYES2.txt','a')
+	file = open('BAYES2.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -457,7 +458,7 @@ for i in range(0,1):
 	file.close()
 
 	#VTMJ
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/VTMJ.txt','a')
+	file = open('VTMJ.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -506,7 +507,7 @@ for i in range(0,1):
 	VMJTResult.append(VMJT6Error)
 
 	#KNN
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/KNN1.txt','a')
+	file = open('KNN1.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -516,7 +517,7 @@ for i in range(0,1):
 	    file.write(str(k) + '\n') 
 	file.close()
 
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/KNN2.txt','a')
+	file = open('KNN2.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -527,7 +528,7 @@ for i in range(0,1):
 	file.close()
 	
 	#BAYES
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/BAYES1.txt','a')
+	file = open('BAYES1.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -537,7 +538,7 @@ for i in range(0,1):
 	    file.write(str(b) + '\n') 
 	file.close()
 	
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/BAYES2.txt','a')
+	file = open('BAYES2.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -548,7 +549,7 @@ for i in range(0,1):
 	file.close()
 
 	#VTMJ
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/VTMJ.txt','a')
+	file = open('VTMJ.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -597,7 +598,7 @@ for i in range(0,1):
 	VMJTResult.append(VMJT7Error)
 
 	#KNN
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/KNN1.txt','a')
+	file = open('KNN1.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -607,7 +608,7 @@ for i in range(0,1):
 	    file.write(str(k) + '\n') 
 	file.close()
 
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/KNN2.txt','a')
+	file = open('KNN2.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -618,7 +619,7 @@ for i in range(0,1):
 	file.close()
 	
 	#BAYES
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/BAYES1.txt','a')
+	file = open('BAYES1.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -628,7 +629,7 @@ for i in range(0,1):
 	    file.write(str(b) + '\n') 
 	file.close()
 	
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/BAYES2.txt','a')
+	file = open('BAYES2.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -639,7 +640,7 @@ for i in range(0,1):
 	file.close()
 
 	#VTMJ
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/VTMJ.txt','a')
+	file = open('VTMJ.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -688,7 +689,7 @@ for i in range(0,1):
 	VMJTResult.append(VMJT8Error)
 
 	#KNN
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/KNN1.txt','a')
+	file = open('KNN1.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -698,7 +699,7 @@ for i in range(0,1):
 	    file.write(str(k) + '\n') 
 	file.close()
 
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/KNN2.txt','a')
+	file = open('KNN2.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -709,7 +710,7 @@ for i in range(0,1):
 	file.close()
 	
 	#BAYES
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/BAYES1.txt','a')
+	file = open('BAYES1.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -719,7 +720,7 @@ for i in range(0,1):
 	    file.write(str(b) + '\n') 
 	file.close()
 	
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/BAYES2.txt','a')
+	file = open('BAYES2.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -730,7 +731,7 @@ for i in range(0,1):
 	file.close()
 
 	#VTMJ
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/VTMJ.txt','a')
+	file = open('VTMJ.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -779,7 +780,7 @@ for i in range(0,1):
 	VMJTResult.append(VMJT9Error)
 
 	#KNN
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/KNN1.txt','a')
+	file = open('KNN1.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -789,7 +790,7 @@ for i in range(0,1):
 	    file.write(str(k) + '\n') 
 	file.close()
 
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/KNN2.txt','a')
+	file = open('KNN2.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -800,7 +801,7 @@ for i in range(0,1):
 	file.close()
 	
 	#BAYES
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/BAYES1.txt','a')
+	file = open('BAYES1.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -810,7 +811,7 @@ for i in range(0,1):
 	    file.write(str(b) + '\n') 
 	file.close()
 	
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/BAYES2.txt','a')
+	file = open('BAYES2.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -821,7 +822,7 @@ for i in range(0,1):
 	file.close()
 
 	#VTMJ
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/VTMJ.txt','a')
+	file = open('VTMJ.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -870,7 +871,7 @@ for i in range(0,1):
 	VMJTResult.append(VMJT10Error)
 
 	#KNN
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/KNN1.txt','a')
+	file = open('KNN1.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -880,7 +881,7 @@ for i in range(0,1):
 	    file.write(str(k) + '\n') 
 	file.close()
 
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/KNN2.txt','a')
+	file = open('KNN2.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -891,7 +892,7 @@ for i in range(0,1):
 	file.close()
 	
 	#BAYES
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/BAYES1.txt','a')
+	file = open('BAYES1.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -901,7 +902,7 @@ for i in range(0,1):
 	    file.write(str(b) + '\n') 
 	file.close()
 	
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/BAYES2.txt','a')
+	file = open('BAYES2.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -912,7 +913,7 @@ for i in range(0,1):
 	file.close()
 
 	#VTMJ
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/VTMJ.txt','a')
+	file = open('VTMJ.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -934,7 +935,7 @@ for i in range(0,1):
 	print 'VMJTResult: '+ str(np.mean(VMJTResult))
 
 	#KNN
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/viewShapeKnnResult.txt','a')
+	file = open('viewShapeKnnResult.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -943,7 +944,7 @@ for i in range(0,1):
 	    file.write(str(k) + '\n') 
 	file.close()
 
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/viewRGBKnnResult.txt','a')
+	file = open('viewRGBKnnResult.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -953,7 +954,7 @@ for i in range(0,1):
 	file.close()
 	
 	#BAYES
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/viewShapeBayesResult.txt','a')
+	file = open('viewShapeBayesResult.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -962,7 +963,7 @@ for i in range(0,1):
 	    file.write(str(b) + '\n') 
 	file.close()
 	
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/viewRGbBayesResult.txt','a')
+	file = open('viewRGbBayesResult.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -972,7 +973,7 @@ for i in range(0,1):
 	file.close()
 
 	#VTMJ
-	file = open('/home/avyner/Desktop/MSCC/IN1102/PROJ1/VMJTResult.txt','a')
+	file = open('VMJTResult.txt','a')
 
 	file.write("\n")
 	file.write("time "+str(i)+':\n')
@@ -980,3 +981,63 @@ for i in range(0,1):
 	for v in VMJTResult :
 	    file.write(str(v) + '\n') 
 	file.close()
+
+	viewShapeKnnResult30F.append(np.mean(viewShapeKnnResult))
+	viewRGBKnnResult30F.append(np.mean(viewRGBKnnResult))
+	viewShapeBayesResult30F.append(np.mean(viewShapeBayesResult))
+	viewRGbBayesResult30F.append(np.mean(viewRGbBayesResult))
+	VMJTResult30F.append(np.mean(VMJTResult))
+
+
+print "Estimativa Pontual para Media:"
+
+print 'viewShapeKnnResult: '+ str(np.mean(viewShapeKnnResult30F))
+print 'viewRGBKnnResult: '+ str(np.mean(viewRGBKnnResult30F))
+print 'viewShapeBayesResult: '+ str(np.mean(viewShapeBayesResult30F))
+print 'viewRGbBayesResult: '+ str(np.mean(viewRGbBayesResult30F))
+print 'CombinadosVotoMajoritarioResult: '+ str(np.mean(VMJTResult30F))
+
+print "Desvio Padrao:"
+
+print 'viewShapeKnnResult: '+ str(np.std(viewShapeKnnResult30F))
+print 'viewRGBKnnResult: '+ str(np.std(viewRGBKnnResult30F))
+print 'viewShapeBayesResult: '+ str(np.std(viewShapeBayesResult30F))
+print 'viewRGbBayesResult: '+ str(np.std(viewRGbBayesResult30F))
+print 'CombinadosVotoMajoritarioResult: '+ str(np.std(VMJTResult30F))
+
+print 'Estimativas Intervaladas com Confianca com 95%% para a media:'
+print 'viewShapeKnnResult: '
+util.getIc(viewShapeKnnResult30F)
+print 'viewRGBKnnResult: '
+util.getIc(viewRGBKnnResult30F)
+print 'viewShapeBayesResult: '
+util.getIc(viewShapeBayesResult30F)
+print 'viewRGbBayesResult: '
+util.getIc(viewRGbBayesResult30F)
+print 'CombinadosVotoMajoritarioResult: '
+util.getIc(VMJTResult30F)
+
+#Friedman Test
+print "Friedman Test Para os 5 Classificadores para 99%% de Significancia"
+
+Fvalue,pvalue,rankings,pivots = util.friedman_test(viewShapeKnnResult30F,viewRGBKnnResult30F,viewShapeBayesResult30F,viewRGbBayesResult30F,VMJTResult30F)
+pivDic = {'knnV1':pivots[0], 'knnV2':pivots[1],'BayesV1': pivots[2],'BayesV2': pivots[3],'Vtmj': pivots[4]}
+
+print 'p-value: ' 
+print pvalue
+print 'Rank: '
+print pivDic
+
+#Nemenyi Test
+
+pivDic = {'knnV1':pivots[0], 'knnV2':pivots[1],'BayesV1': pivots[2],'BayesV2': pivots[3],'Vtmj': pivots[4]}
+
+Comparions,Zvalues,pvalues,Adjustedpvalues = util.nemenyi_multitest(pivDic)
+
+print "Friedman Test Para os 5 Ranks do teste de Friedman para os Classificadores com 99%% de Significancia:"
+
+print "Comparacoes:"
+print Comparions
+
+print "P-Values Ajustados:"
+print Adjustedpvalues
